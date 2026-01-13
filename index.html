@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成佳俊 | AI内容运营 & AIGC技术实践者</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">成佳俊</a>
+            <div class="nav-links">
+                <a href="#home" class="active">首页</a>
+                <a href="#projects">个人AI项目</a>
+                <a href="#aigc">AIGC作品</a>
+                <a href="#contact">联系我</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <p class="tagline">你好，我是成佳俊</p>
+            <h1
+                style="font-size: 2.5rem; margin-top: 20px; margin-bottom: 40px; font-weight: 500; color: var(--text-primary);">
+                为虚拟的世界，付出真实的情感</h1>
+
+            <div class="tags-container">
+                <span class="tag">Lora训练</span>
+                <span class="tag">Stable Diffusion</span>
+                <span class="tag">Flux</span>
+                <span class="tag">Suno音乐</span>
+                <span class="tag">Heygen数字人</span>
+                <span class="tag">视频剪辑</span>
+                <span class="tag">Agent开发</span>
+            </div>
+
+            <div style="display: flex; gap: 20px;">
+                <a href="#projects" class="btn btn-primary">查看作品</a>
+                <a href="成佳俊AI2026.pdf" target="_blank" class="btn btn-outline" download>下载简历</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 50px;">精选<span
+                    class="gradient-text">个人AI项目</span></h2>
+
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="product">产品设计</button>
+                <button class="filter-btn" data-filter="tech">技术实现</button>
+                <button class="filter-btn" data-filter="social">社会影响</button>
+                <button class="filter-btn" data-filter="hardware">硬件集成</button>
+            </div>
+
+            <div id="projects-grid" class="projects-grid">
+                <!-- Projects will be loaded via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- AIGC Section -->
+    <section id="aigc" class="section" style="background: rgba(255,255,255,0.02);">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 50px;">部分AIGC <span
+                    class="gradient-text">作品</span></h2>
+
+            <div id="video-wall" class="video-wall">
+                <!-- Videos will be loaded via JS -->
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <h2 style="margin-bottom: 20px;">联系 <span class="gradient-text">我</span></h2>
+            <p>为虚拟的世界，付出真实的情感</p>
+
+            <div class="contact-links">
+                <a href="mailto:1042961147@qq.com" class="contact-item">
+                    <i class="fas fa-envelope"></i> 1042961147@qq.com
+                </a>
+                <a href="tel:13931162641" class="contact-item">
+                    <i class="fab fa-weixin"></i> 13931162641
+                </a>
+                <a href="https://www.douyin.com/user/self" target="_blank" class="contact-item">
+                    <i class="fab fa-tiktok"></i> 抖音主页
+                </a>
+                <a href="https://space.bilibili.com/12706119" target="_blank" class="contact-item">
+                    <i class="fab fa-bilibili"></i> B站主页
+                </a>
+            </div>
+
+            <p style="margin-top: 50px; color: #666; font-size: 0.8rem;">
+                © 2026 Cheng Jiajun. Built with AI & Passion.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="modal">
+        <span class="modal-close">&times;</span>
+        <div class="modal-content">
+            <video id="modal-video" controls playsinline></video>
+            <h3 id="modal-title"></h3>
+        </div>
+    </div>
+
+    <!-- Project Detail Modal -->
+    <div id="project-modal" class="modal">
+        <span class="modal-close" id="project-modal-close">&times;</span>
+        <div class="modal-content project-detail-content">
+            <h3 id="project-modal-title"></h3>
+            <div id="project-modal-media"></div>
+            <div class="carousel-controls" id="carousel-controls" style="display: none;">
+                <button class="carousel-btn prev" id="carousel-prev">&lt;</button>
+                <span class="carousel-indicator" id="carousel-indicator"></span>
+                <button class="carousel-btn next" id="carousel-next">&gt;</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
