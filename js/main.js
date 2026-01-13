@@ -132,7 +132,7 @@ function createProjectCard(project) {
 function initAIGC() {
     const wall = document.getElementById('video-wall');
 
-    // Intersection Observer for lazy loading
+    // Intersection Observer for lazy loading (优化移动端，提前更多距离加载)
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -140,11 +140,16 @@ function initAIGC() {
                 if (video.dataset.src) {
                     video.src = video.dataset.src;
                     video.removeAttribute('data-src');
+                    // 添加加载错误处理
+                    video.addEventListener('error', function () {
+                        console.error('视频加载失败:', video.dataset.src || video.src);
+                        this.style.display = 'none';
+                    });
                     observer.unobserve(video);
                 }
             }
         });
-    }, { rootMargin: '50px' });
+    }, { rootMargin: '200px' }); // 增加到200px，移动端提前加载
 
     aigcVideos.forEach(filename => {
         const item = document.createElement('div');
