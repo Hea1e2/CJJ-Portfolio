@@ -143,14 +143,9 @@ function initAIGC() {
                     // 添加加载错误处理
                     video.addEventListener('error', function () {
                         console.error('视频加载失败:', video.dataset.src || video.src);
-                        this.style.display = 'none';
                     });
-                    // 确保视频可见
-                    video.addEventListener('loadeddata', function () {
-                        this.style.opacity = '1';
-                        this.style.visibility = 'visible';
-                    }, { once: true });
-                    video.load(); // 强制加载
+
+                    video.load(); // 尝试强制加载
                     observer.unobserve(video);
                 }
             }
@@ -175,10 +170,9 @@ function initAIGC() {
         const videoEl = item.querySelector('video');
         observer.observe(videoEl);
 
-        // 添加视频加载完成后的处理
+        // 添加视频加载完成后的处理（仅用于设置第一帧显示，不控制显隐）
         videoEl.addEventListener('loadeddata', function () {
-            this.style.opacity = '1';
-            // 移动端显示第一帧
+            // 移动端尝试显示第一帧
             if (this.readyState >= 2) {
                 this.currentTime = 0.1;
             }
