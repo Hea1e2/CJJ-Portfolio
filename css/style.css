@@ -846,7 +846,8 @@ h4 {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.95);
+    background-color: rgba(0, 0, 0, 0.98);
+    /* 加深遮罩，几乎不透明 */
     backdrop-filter: blur(10px);
     align-items: center;
     justify-content: center;

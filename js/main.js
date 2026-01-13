@@ -184,17 +184,34 @@ function initAIGC() {
             }
         });
 
-        // Hover events
-        item.addEventListener('mouseenter', () => {
-            videoEl.play().catch(e => console.log('Autoplay prevented', e));
-        });
-        item.addEventListener('mouseleave', () => {
-            videoEl.pause();
-            videoEl.currentTime = 0;
-        });
+        // Detect if device supports hover
+        const canHover = window.matchMedia('(hover: hover)').matches;
+
+        // Hover events (Only for desktop)
+        if (canHover) {
+            item.addEventListener('mouseenter', () => {
+                // 如果当前没有弹窗打开，才播放预览
+                const modal = document.getElementById('video-modal');
+                if (modal.style.display !== 'block') {
+                    videoEl.play().catch(e => console.log('Autoplay prevented', e));
+                }
+            });
+            item.addEventListener('mouseleave', () => {
+                videoEl.pause();
+                videoEl.currentTime = 0;
+            });
+        }
 
         // Click to open modal and play full video
-        item.addEventListener('click', () => {
+        item.addEventListener('click', (e) => {
+            // 移动端防止触发hover效果导致的双重播放
+            e.preventDefault();
+            e.stopPropagation();
+
+            // 暂停预览视频
+            videoEl.pause();
+            videoEl.currentTime = 0;
+
             openVideoModal(filename, name);
         });
 
