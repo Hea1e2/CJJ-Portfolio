@@ -145,6 +145,12 @@ function initAIGC() {
                         console.error('视频加载失败:', video.dataset.src || video.src);
                         this.style.display = 'none';
                     });
+                    // 确保视频可见
+                    video.addEventListener('loadeddata', function () {
+                        this.style.opacity = '1';
+                        this.style.visibility = 'visible';
+                    }, { once: true });
+                    video.load(); // 强制加载
                     observer.unobserve(video);
                 }
             }
@@ -159,7 +165,7 @@ function initAIGC() {
         const name = filename.replace('.mp4', '');
 
         item.innerHTML = `
-            <video data-src="AIGC/${filename}#t=0.1" loop muted playsinline preload="metadata"></video>
+            <video data-src="AIGC/${filename}#t=0.1" loop muted playsinline preload="metadata" style="background: rgba(255,255,255,0.05);"></video>
             <div class="video-overlay">
                 <span style="color: white; font-size: 0.9rem;">${name}</span>
                 <i class="fas fa-play" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.5rem; opacity: 0.8;"></i>
@@ -168,6 +174,15 @@ function initAIGC() {
 
         const videoEl = item.querySelector('video');
         observer.observe(videoEl);
+
+        // 添加视频加载完成后的处理
+        videoEl.addEventListener('loadeddata', function () {
+            this.style.opacity = '1';
+            // 移动端显示第一帧
+            if (this.readyState >= 2) {
+                this.currentTime = 0.1;
+            }
+        });
 
         // Hover events
         item.addEventListener('mouseenter', () => {
