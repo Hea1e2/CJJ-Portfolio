@@ -340,21 +340,58 @@ h4 {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 15px;
+    min-height: 400px;
+    /* 确保有最小高度 */
 }
 
 .video-item {
     aspect-ratio: 9/16;
-    background: #000;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    /* 深色渐变背景 */
     border-radius: 10px;
     overflow: hidden;
     position: relative;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.video-item:hover {
+    transform: scale(1.02);
+}
+
+/* 视频加载前的占位符 */
+.video-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 3px solid rgba(96, 165, 250, 0.2);
+    border-top-color: rgba(96, 165, 250, 0.8);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 1;
+}
+
+/* 视频加载后隐藏占位符 */
+.video-item video[src]+.video-overlay::after {
+    display: none;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .video-item video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    position: relative;
+    z-index: 2;
 }
 
 .video-overlay {
