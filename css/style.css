@@ -822,7 +822,19 @@ h4 {
 
     /* 视频墙单列显示 */
     .video-wall {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        /* 改为两列，更紧凑 */
+        gap: 10px;
+    }
+
+    /* 移动端强制显示视频标题和图标 */
+    .video-overlay {
+        opacity: 1 !important;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    }
+
+    .video-overlay i {
+        opacity: 0.9 !important;
     }
 
     /* 弹窗按钮 */
