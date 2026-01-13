@@ -1,3 +1,12 @@
+// AIGC Videos List
+const aigcVideos = [
+    '1.mp4', '2.mp4', '3.mp4', '4.mp4', '5.mp4', '6.mp4', '7.mp4', '8.mp4',
+    'chenxiangyu.mp4', 'guyue.mp4', 'jiangchen.mp4', 'lingxingyao.mp4', 'luxiuran.mp4', 'mofan.mp4', 'shenzhizhou.mp4', 'suyi.mp4', 'xialuli.mp4', 'xiaoyang.mp4',
+    '一叶子.mp4', '于丹青.mp4', '刺青.mp4', '夜驰.mp4', '姜小橙.mp4', '山月.mp4', '庄筱雨.mp4', '徐梦.mp4', '心怡.mp4', '晴阳.mp4', '李米米.mp4',
+    '林夏.mp4', '林小陌.mp4', '猫猫糖.mp4', '甜米咪.mp4', '白露.mp4', '秦杉杉.mp4', '窈窕.mp4', '绒绒.mp4', '美琪.mp4', '苏晴雯.mp4',
+    '苏苏.mp4', '苏锦.mp4', '苦艾.mp4'
+];
+
 document.addEventListener('DOMContentLoaded', () => {
     initProjects();
     initAIGC();
