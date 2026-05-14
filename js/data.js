@@ -64,7 +64,7 @@ const projects = [
         id: 5,
         title: "AI突破次元合照",
         desc: "COZE搭建的一套流程，AI抠图+AI融合图片，帮助用户让自己心爱的角色进入现实世界。",
-        category: "social",
+        category: "tech",
         tags: ["图像融合", "Stable Diffusion", "创意摄影"],
         mediaType: "image",
         src: "AI项目/项目5：AI突破次元合照/示例1合照.jpg",
@@ -102,6 +102,10 @@ const projects = [
         desc: "在抖音和B站评论区帮网友做AI复活亲人，流程：AI修复照片→ChatGPT生成文案→百度飞桨复刻声音→DID/Heygen生成对口型视频。因为是23年的AI能力，现在看起来效果已经比较一般了。图文作品发抖音后获得3.7W播放、1638点赞。",
         category: "social",
         tags: ["AI公益", "声音复刻", "DID", "人文关怀"],
+        outcomes: [
+            { value: "3.7W", label: "抖音播放" },
+            { value: "1638", label: "点赞" }
+        ],
         mediaType: "video",
         src: "AI项目/项目7：帮网友AI复活亲人/视频1.mp4",
         link: "https://mp.weixin.qq.com/s/hPhe0tyc0UFzk8HgyLAgmA",
@@ -134,6 +138,11 @@ const projects = [
         desc: "训练了角色面容lora后，用flux生成图片，可灵生成视频。B站获得137点赞、20投币、216收藏、32转发。",
         category: "tech",
         tags: ["Flux", "可灵", "AI视频"],
+        outcomes: [
+            { value: "137", label: "B站点赞" },
+            { value: "216", label: "收藏" },
+            { value: "32", label: "转发" }
+        ],
         mediaType: "video",
         src: "AI项目/项目9：AI模仿电影《情书》/情书.mp4",
         link: null,

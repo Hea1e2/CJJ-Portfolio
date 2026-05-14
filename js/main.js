@@ -5,6 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
 });
 
+const categoryLabels = {
+    product: '产品设计',
+    tech: '技术实现',
+    social: '社会影响',
+    hardware: '硬件集成'
+};
+
 // Render Projects
 function initProjects() {
     const grid = document.getElementById('projects-grid');
@@ -50,6 +57,7 @@ function createProjectCard(project) {
     const card = document.createElement('div');
     card.className = 'project-card';
     card.setAttribute('data-category', project.category);
+    card.setAttribute('data-case', `CASE ${String(project.id).padStart(2, '0')}`);
 
     const mediaHtml = project.mediaType === 'video'
         ? `<video src="${project.src}" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause();this.currentTime=0;"></video>`
@@ -57,6 +65,18 @@ function createProjectCard(project) {
 
     // Create tags HTML
     const tagsHtml = project.tags.map(tag => `<span class="card-tag">${tag}</span>`).join('');
+    const outcomesHtml = project.outcomes && project.outcomes.length > 0
+        ? `
+            <div class="outcome-strip" aria-label="运营结果">
+                ${project.outcomes.map(item => `
+                    <span class="outcome-item">
+                        <strong>${item.value}</strong>
+                        <em>${item.label}</em>
+                    </span>
+                `).join('')}
+            </div>
+        `
+        : '';
 
     // Create buttons based on available resources
     let buttonsHtml = '';
@@ -98,11 +118,16 @@ function createProjectCard(project) {
             ${mediaHtml}
         </div>
         <div class="card-content">
+            <div class="card-kicker">
+                <span>CASE ${String(project.id).padStart(2, '0')}</span>
+                <span>${categoryLabels[project.category] || 'AI 项目'}</span>
+            </div>
             <div class="card-tags">
                 ${tagsHtml}
             </div>
             <h3 class="card-title">${project.title}</h3>
             <p class="card-desc">${project.desc}</p>
+            ${outcomesHtml}
             ${buttonsHtml}
         </div>
     `;
@@ -160,10 +185,10 @@ function initAIGC() {
         const name = filename.replace('.mp4', '');
 
         item.innerHTML = `
-            <video data-src="AIGC/${filename}#t=0.1" loop muted playsinline preload="metadata" style="background: rgba(255,255,255,0.05);"></video>
+            <video data-src="AIGC/${filename}#t=0.1" loop muted playsinline preload="metadata"></video>
             <div class="video-overlay">
-                <span style="color: white; font-size: 0.9rem;">${name}</span>
-                <i class="fas fa-play" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.5rem; opacity: 0.8;"></i>
+                <span>${name}</span>
+                <i class="fas fa-play"></i>
             </div>
         `;
 
@@ -224,7 +249,7 @@ function initAnimations() {
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.section, .card').forEach(el => {
+    document.querySelectorAll('.section, .project-card, .video-item, .lab-panel').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -247,11 +272,11 @@ function initNavbar() {
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(3, 0, 20, 0.95)';
+            navbar.style.background = 'rgba(5, 8, 8, 0.94)';
             navbar.style.padding = '10px 0';
         } else {
-            navbar.style.background = 'rgba(3, 0, 20, 0.8)';
-            navbar.style.padding = '20px 0';
+            navbar.style.background = 'rgba(8, 10, 11, 0.78)';
+            navbar.style.padding = '14px 0';
         }
     });
 
